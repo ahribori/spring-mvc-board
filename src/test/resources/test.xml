@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+
+<!-- Database -->
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"></property>
+	<property name="username" value="scott"></property>
+	<property name="password" value="tiger"></property>
+	<property name="maxActive" value="50"></property>
+</bean>
+
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="configLocation" value="classpath:mybatis/config/SqlSessionConfig.xml"></property>
+</bean>
+
+<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+</bean>
+
+<!-- ViewResolver -->
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/views/"></property>
+	<property name="suffix" value=".jsp"></property>
+</bean>
+
+<!-- MethodNameResolver -->
+<bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+	<property name="paramName" value="command"></property>
+</bean>
+
+<bean id="boardService" class="org.daniel.board.model.BoardServiceImpl"></bean>
+<bean id="boardDao" class="org.daniel.board.model.BoardDaoImpl">
+	<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+</bean>
+</beans>
