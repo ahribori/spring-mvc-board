@@ -2,6 +2,7 @@ package org.daniel.board.model;
 
 import static org.junit.Assert.*;
 
+import org.daniel.board.model.BoardService;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,7 +25,7 @@ public class TestBoardService {
 
 	@Test
 	public void test() {
-		System.out.println("good");
+		System.out.println("good!");
 	}
 
 }

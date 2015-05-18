@@ -35,7 +35,9 @@
 	<property name="paramName" value="command"></property>
 </bean>
 
-<bean id="boardService" class="org.daniel.board.model.BoardServiceImpl"></bean>
+<bean id="boardService" class="org.daniel.board.model.BoardServiceImpl">
+	<constructor-arg ref="boardDao"></constructor-arg>
+</bean>
 <bean id="boardDao" class="org.daniel.board.model.BoardDaoImpl">
 	<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
 </bean>
