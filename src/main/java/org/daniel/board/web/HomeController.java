@@ -1,4 +1,4 @@
-package org.daniel.board.controller;
+package org.daniel.board.web;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,9 +33,10 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/board/{no}")
-	public ModelAndView board(@RequestParam int no) {
-		return new ModelAndView();
+	@RequestMapping(value = "/article/{no}")
+	public String board(@PathVariable String no, Model model) {
+		model.addAttribute("no", no);
+		return "board";
 	}
 	
 }

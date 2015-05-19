@@ -1,4 +1,4 @@
-package org.daniel.board.model;
+package org.daniel.board.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 

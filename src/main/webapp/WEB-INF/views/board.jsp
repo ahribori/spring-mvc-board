@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+${no}
+<br>
+${page}
+<br>
+${articles}
+<br>
 </body>
 </html>

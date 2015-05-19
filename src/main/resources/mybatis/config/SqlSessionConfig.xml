@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.daniel.board.model.Article" alias="article"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="mybatis/config/board.xml"/>
+		<mapper resource="mybatis/config/articles.xml"/>
 	</mappers>
 </configuration>
 

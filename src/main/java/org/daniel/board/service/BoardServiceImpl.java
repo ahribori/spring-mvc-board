@@ -1,4 +1,6 @@
-package org.daniel.board.model;
+package org.daniel.board.service;
+
+import org.daniel.board.dao.BoardDao;
 
 public class BoardServiceImpl implements BoardService {
 	
