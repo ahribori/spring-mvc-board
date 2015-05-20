@@ -32,10 +32,10 @@ public class TestBoardDao {
 	}
 	
 	@Test
-	public void testInsert() {
-		logger.debug("testInsert() started...");
+	public void testInsertArticle() {
+		logger.debug("testInsertArticle() started...");
 		
-		logger.debug("testInsert() ended...");
+		logger.debug("testInsertArticle() ended...");
 	}
 	
 	@Test
