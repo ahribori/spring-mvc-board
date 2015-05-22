@@ -4,9 +4,56 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="articles">
+	<resultMap type="article" id="articleRM">
+		<result property="no" column="article_no"/>
+	</resultMap>
  	<select id="selectAll" resultType="list">
  		select * from board
- 	</select> 	
+ 	</select>
+ 	<select id="getTotalCount" resultType="int">
+ 		select count(*) from articles
+ 	</select>
+ 	<select id="getArticle" resultMap="articleRM">
+ 		select * from articles where article_no=#{no}
+ 	</select>
+ 	<select id="getArticles" resultMap="articleRM">
+ 		select * from 
+ 		(select rownum,a.* from 
+ 			(select * from articles order by article_no desc) a
+ 		) where rownum between #{beginRow} and #{endRow}
+ 	</select>
+ 	<select id="getArticlesByCategory" resultMap="articleRM">
+ 		select * from 
+ 		(select rownum,a.* from 
+ 			(select * from articles where category=#{category} order by article_no desc) a
+ 		) where rownum between #{page.beginRow} and #{page.endRow}
+ 	</select>
+ 	<select id="getArticlesByWriter" resultMap="articleRM">
+ 		select * from 
+ 		(select rownum,a.* from 
+ 			(select * from articles where writer=#{writer} order by article_no desc) a
+ 		) where rownum between #{page.beginRow} and #{page.endRow}
+ 	</select>
+	<insert id="insertArticle">
+		insert into articles(article_no,category,title,contents,writer) 
+		values(articles_seq.nextval,#{category},#{title},#{contents},#{writer})
+	</insert>
+	<update id="updateArticle">
+		update articles set category=#{category},title=#{title},contents=#{contents} 
+		where article_no=#{no}
+	</update>
+	<update id="upGood">
+		update articles set good=good+1  
+		where article_no=#{no}
+	</update>
+	<update id="upBad">
+		update articles set bad=bad+1  
+		where article_no=#{no}
+	</update>
+	<update id="upHits">
+		update articles set hits=hits+1  
+		where article_no=#{no}
+	</update>
 </mapper>
  
  

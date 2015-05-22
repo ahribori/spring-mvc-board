@@ -19,7 +19,7 @@ public class TestPaging {
 
 	@Test
 	public void test() {
-		page.setCurrentPage(13);
+		page.setCurrentPage(1);
 	}
 
 	@After
