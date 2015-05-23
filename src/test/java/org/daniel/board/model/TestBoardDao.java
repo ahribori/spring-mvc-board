@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Resource;
+
 import org.daniel.board.dao.BoardDao;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +18,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestBoardDao {
 	
 	private ApplicationContext ctx;
+	@Resource(name="boardDaoImpl")
 	private BoardDao boardDao;
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -62,9 +65,10 @@ public class TestBoardDao {
 	@Test
 	public void testGetArticles() {
 		logger.debug("testGetArticles() started...");
-		List<Article> list = boardDao.getArticles(new Page(boardDao.getTotalCount()));
+		List<Article> list = boardDao.getArticles(new Page(2,boardDao.getTotalCount()));
 		for (Article article : list) {
 			logger.debug(article+"");
+			System.out.println(article+"ㅇㄹㄴㄹㅇㄴㄹ");
 		}
 		logger.debug("testGetArticles() ended...");
 	}
@@ -72,7 +76,7 @@ public class TestBoardDao {
 	@Test
 	public void testGetArticlesByCategory() {
 		logger.debug("testGetArticlesByCategory() started...");
-		List<Article> list = boardDao.getArticlesByCategory(new Page(boardDao.getTotalCount()), "test");
+		List<Article> list = boardDao.getArticlesByCategory(new Page(3, boardDao.getTotalCount()), "test");
 		for (Article article : list) {
 			logger.debug(article+"");
 		}

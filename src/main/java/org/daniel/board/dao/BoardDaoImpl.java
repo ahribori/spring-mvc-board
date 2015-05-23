@@ -4,13 +4,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.daniel.board.model.Article;
 import org.daniel.board.model.Page;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class BoardDaoImpl implements BoardDao {
 	
+	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
+	
+	public BoardDaoImpl() {
+		super();
+	}
 
 	public BoardDaoImpl(SqlSessionTemplate sqlSessionTemplate) {
 		super();

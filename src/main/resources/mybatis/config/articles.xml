@@ -17,10 +17,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from articles where article_no=#{no}
  	</select>
  	<select id="getArticles" resultMap="articleRM">
- 		select * from 
- 		(select rownum,a.* from 
- 			(select * from articles order by article_no desc) a
- 		) where rownum between #{beginRow} and #{endRow}
+ 	<![CDATA[
+ 	select * from (select rownum as rnum,a.* from (select * from articles order by article_no desc) a where rownum<=#{endRow}) where rnum>=#{beginRow}
+ 	]]>
  	</select>
  	<select id="getArticlesByCategory" resultMap="articleRM">
  		select * from 

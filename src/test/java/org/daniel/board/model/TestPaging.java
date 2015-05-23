@@ -13,13 +13,12 @@ public class TestPaging {
 	
 	@Before
 	public void setUp() throws Exception {
-		page = new Page(1389);
+		page = new Page(100);
 	}
-
 
 	@Test
 	public void test() {
-		page.setCurrentPage(1);
+		page.setCurrentPage(2);
 	}
 
 	@After

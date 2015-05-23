@@ -34,11 +34,4 @@
 <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 	<property name="paramName" value="command"></property>
 </bean>
-
-<bean id="boardService" class="org.daniel.board.service.BoardServiceImpl">
-	<constructor-arg ref="boardDao"></constructor-arg>
-</bean>
-<bean id="boardDao" class="org.daniel.board.dao.BoardDaoImpl">
-	<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
-</bean>
 </beans>
