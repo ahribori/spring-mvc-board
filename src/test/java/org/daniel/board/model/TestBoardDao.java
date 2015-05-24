@@ -38,21 +38,21 @@ public class TestBoardDao {
 		logger.debug("testGetTotalCount() ended...");
 	}
 	
-//	@Test
-//	public void testInsertArticle() {
-//		logger.debug("testInsertArticle() started...");
-//		String categoryList[] = {"free","qna","test"};
-//		String writerList[] = {"hs9923","admin","java","hello"};
-//		Random random = new Random();
-//		for(int i = 0 ; i < 100; i ++) {
-//			String category = categoryList[random.nextInt(3)];
-//			String title = "randomTitle : " + random.nextInt(99999);
-//			String contents = "randomContents : " + random.nextInt(99999);
-//			String writer = writerList[random.nextInt(4)];
-//			boardDao.insertArticle(new Article(category,title,contents,writer));
-//		}
-//		logger.debug("testInsertArticle() ended...");
-//	}
+	@Test
+	public void testInsertArticle() {
+		logger.debug("testInsertArticle() started...");
+		String categoryList[] = {"free","qna","test"};
+		String writerList[] = {"hs9923","admin","java","hello"};
+		Random random = new Random();
+		for(int i = 0 ; i < 100; i ++) {
+			String category = categoryList[random.nextInt(3)];
+			String title = "randomTitle : " + random.nextInt(99999);
+			String contents = "randomContents : " + random.nextInt(99999);
+			String writer = writerList[random.nextInt(4)];
+			boardDao.insertArticle(new Article(category,title,contents,writer));
+		}
+		logger.debug("testInsertArticle() ended...");
+	}
 	
 	@Test
 	public void testGetArticle() {

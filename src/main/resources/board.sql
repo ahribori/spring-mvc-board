@@ -19,3 +19,5 @@ select * from articles
 
 
 select * from (select rownum as rnum,a.* from (select * from articles order by article_no desc) a where rownum<=20) where rnum>=1
+
+select * from (select rownum as rnum,a.* from(select * from articles order by article_no desc) a) where rnum between 10 and 20
