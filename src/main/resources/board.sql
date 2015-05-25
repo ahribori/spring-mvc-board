@@ -1,15 +1,23 @@
 drop table articles
 create table articles(
-	no number primary key,
+	article_no number primary key,
 	category varchar2(50) not null,
 	title varchar2(100) not null,
 	contents clob not null,
 	writer varchar2(50) not null,
-	like number default 0,
-	hate number default 0,
+	good number default 0,
+	bad number default 0,
 	hits number default 0,
-	regdate date not null
+	regdate date default sysdate
 )
 
 drop sequence articles_seq
 create sequence articles_seq
+
+select * from articles
+
+
+
+select * from (select rownum as rnum,a.* from (select * from articles order by article_no desc) a where rownum<=20) where rnum>=1
+
+select * from (select rownum as rnum,a.* from(select * from articles order by article_no desc) a) where rnum between 10 and 20
