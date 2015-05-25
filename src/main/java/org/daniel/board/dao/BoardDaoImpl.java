@@ -33,7 +33,6 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public Article insertArticle(Article article) {
-		System.out.println(article);
 		sqlSessionTemplate.insert("insertArticle", article);
 		return article;
 	}

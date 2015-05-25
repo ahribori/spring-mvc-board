@@ -3,6 +3,9 @@ package org.daniel.board.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.daniel.board.dao.BoardDao;
 import org.daniel.board.model.Article;
@@ -35,7 +38,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Article getArticle(int no) {
+	public Article getArticle(int no, Cookie cookie, HttpServletRequest request, HttpServletResponse response) {
+		String history = "[" + no + "]";
+		if(cookie!=null && cookie.getName().equals("upHitsHistory")) {
+			history = cookie.getValue();
+			if(!history.contains("["+no+"]")) {
+				history += "[" + no + "]";
+				cookie.setValue(history);
+				cookie.setMaxAge(60*60*24);
+				response.addCookie(cookie);
+				this.upHits(no);
+			}
+		} else {
+			Cookie c = new Cookie("upHitsHistory", history);
+			c.setMaxAge(60*60*24);
+			response.addCookie(c);
+			this.upHits(no);
+		}
 		return boardDao.getArticle(no);
 	}
 

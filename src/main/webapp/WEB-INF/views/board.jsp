@@ -16,8 +16,33 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
+
+<!-- Script -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#regBtn').click(function(){
+			location.href='auth_registerForm';
+		});
+		
+		$('#loginBtn').click(function(){
+			location.href='login.jsp';
+		});
+		
+		$('#logoutBtn').click(function(){
+			location.href='logout';
+		});
+		
+		$('#gotoScrollView').click(function(){
+			location.href='infinityScroll';
+		});
+		
+	});
+</script>
 </head>
 <body>
+	<div><button id="gotoScrollView" class="btn btn-default btn-block">무한 스크롤 모드로 보기</button></div>
 	<div class="col-md-2"></div>
 	<div align="center" class="col-md-8">
 		<table class="table">
@@ -48,6 +73,9 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<div align="center">
+			<button id="regBtn"class="btn btn-info btn">글 쓰 기</button>
+		</div>
 		<ul class="pagination pagination">
 			<li><a href="${page.beginPage-1}">Prev</a></li>
 			<c:if test="${page.currentPageGroup!=1}">
@@ -70,7 +98,16 @@
 			</c:if>
 			<li><a href="${page.endPage+1}">Next</a></li>
 		</ul>
-		<a href="register.jsp">글 쓰 기</a>
+		<c:choose>
+			<c:when test="${auth_info!=null}">
+				<div>${auth_info.name}(${auth_info.id}) 님이 로그인 중입니다.</div><br>
+				<div><button id="logoutBtn" class="btn btn-warning btn-xs">로그아웃</button></div>
+			</c:when>
+			<c:otherwise>
+				<div>로그인 후에 이용할 수 있습니다.</div><br>
+				<div><button id="loginBtn" class="btn btn-danger btn-xs">로그인</button></div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </body>
 </html>

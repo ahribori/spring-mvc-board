@@ -23,4 +23,12 @@
 	
 	<context:component-scan base-package="org.daniel.board" />
 	
+	<!-- Handler Interceptor -->
+	<interceptors>
+		<interceptor>
+		<mapping path="/auth_*"/>
+		<beans:bean class="org.daniel.board.web.LoginCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
